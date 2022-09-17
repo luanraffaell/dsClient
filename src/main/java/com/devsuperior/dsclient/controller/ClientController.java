@@ -1,5 +1,7 @@
 package com.devsuperior.dsclient.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
@@ -44,11 +46,11 @@ public class ClientController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO clientDTO){
+	public ResponseEntity<ClientDTO> insert(@Valid @RequestBody ClientDTO clientDTO){
 		return ResponseEntity.status(HttpStatus.CREATED).body(clientService.save(clientDTO));
 	}
 	@PutMapping("/{id}")
-	public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO){
+	public ResponseEntity<ClientDTO> update(@PathVariable Long id, @Valid @RequestBody ClientDTO clientDTO){
 		return ResponseEntity.ok().body(clientService.update(id,clientDTO));
 	}
 	@DeleteMapping("/{id}")
